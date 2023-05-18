@@ -16,7 +16,7 @@ def genrate_nth_pascal_triangle(N):
         column+=1
     return x
         
-print(genrate_nth_pascal_triangle(30))    
+print(genrate_nth_pascal_triangle(3))    
 
 
 
