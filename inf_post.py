@@ -46,10 +46,10 @@ def evaluate_infix(string):
 #################################
 def infix_to_postfix(string):
     stack=[]
-    # operators=['+','-','*','/','^']
-    operators=['v','~','^']
-    weights={'~':3,'^':2,'v':1}
-    # weights={'+':1,'-':1,'*':2,'/':2,'^':3}
+    operators=['+','-','*','/','^']
+    # operators=['v','~','^']
+    # weights={'~':3,'^':2,'v':1}
+    weights={'+':1,'-':1,'*':2,'/':2,'^':3}
     postfix_expression=""
     output_queue=[]
     output_queue_index=0
@@ -61,7 +61,14 @@ def infix_to_postfix(string):
         if index==len(string)-1:
             #in case you are working with the repetition sign * like in theory or in regex patterns remove the part which says string[index] not in operators in line 25
             if(string[index]!=")") and (string[index]!='(') and (string[index] not in operators):
-                postfix_expression+=string[index]
+                if (index -last_operand_index)>1:
+                    postfix_expression+=" "
+                    postfix_expression+=string[index]
+                    postfix_expression+" "
+                else:
+                    postfix_expression+=string[index]
+                
+                # print(postfix_expression)
                 postfix_expression+=" "
             while(len(stack)!=0):
                 if stack[stack_index-1]=='(':
@@ -92,11 +99,15 @@ def infix_to_postfix(string):
                 stack_index-=1
         elif (string[index] not in operators) and (string[index]!='(' and string[index]!=')') :
              if (index -last_operand_index)>1:
+                #  print("hello")
+                 
                  postfix_expression+=" "
                  postfix_expression+=string[index]
                  postfix_expression+" "
+                #  print(postfix_expression)
                  last_operand_index=index
              elif last_operand_index==0 or (index -last_operand_index)==1:
+                # print("o")
                 postfix_expression+=string[index]
                 last_operand_index=index
         elif string[index] in operators:
@@ -134,7 +145,11 @@ def infix_to_postfix(string):
                         
        
         index+=1
+    print(postfix_expression)
     return postfix_expression.split()
+# print(infix_to_postfix("3+2*2"))
+# print(infix_to_postfix("(3+22)"))
+# print(infix_to_postfix("2335+10121/22556 "))
 # print(infix_to_postfix("((2+3)/20)*6-20"))
 # print(infix_to_postfix("((2+3)/20)*6(20/5*9)"))
 # print(infix_to_postfix("3*(4+2)*5"))
@@ -146,7 +161,7 @@ def infix_to_postfix(string):
 # print(infix_to_postfix("A*(B+C)/D"))
 # print(infix_to_postfix("(~a^~b)v(~c)"))
 # print(infix_to_postfix("~((a^b)^(fvcc))"))
-print(infix_to_postfix("(~a^c)vf ^ ((xvyvz)^(~avy))"))
+# print(infix_to_postfix("(~a^c)vf ^ ((xvyvz)^(~avy))"))
 # print(infix_to_postfix("15+20*30"))
 # print(infix_to_postfix("((A+B)-C*(D/E))+F"))
 # print(infix_to_postfix("((A + Bver) - C * (D / E)) + F"))
@@ -154,15 +169,41 @@ print(infix_to_postfix("(~a^c)vf ^ ((xvyvz)^(~avy))"))
 # print(infix_to_postfix("11^(12^13)"))
 # print(("1 2    3 4     5").split())
 ############################################
-# def evaluate_postifx(post_string):
-#     index=0
-#     stack=[]
-#     operators=[]
-#     while(index<len(post_string)):
-#         if post_string[index] not in operators:
-#             stack.append()
-#         index+=1
-
+def evaluate_postifx(output_queue):
+    queue=[]
+    queue_index=0
+    operators=['+','-','*','/','^']
+    res=""
+    elemnt=""
+    for i in range(len(output_queue)):
+        if output_queue[i] not in operators:
+            queue.append(int(output_queue[i]))
+        elif output_queue[i] in operators:
+            elemnt2=queue.pop()
+            elemnt1=queue.pop()
+            if output_queue[i] =='^':
+                res=int(elemnt1) ^ int(elemnt2)
+            elif output_queue[i]=='/':
+                res=int(elemnt1) /int(elemnt2)
+            elif output_queue[i]=='*':
+                res=int(elemnt1) * int(elemnt2)
+            elif output_queue[i]=='-':
+                res=int(elemnt1) -int(elemnt2)
+            elif output_queue[i]=='+':
+                res=int(elemnt1) +int(elemnt2)
+            queue.append(int(res))
+    return queue[0]
+    # print(queue,output_queue)
+    
+# # evaluate_postifx(infix_to_postfix("((2+3)/20)*6-20"))
+print(evaluate_postifx(infix_to_postfix("3+2*2")))
+# print(evaluate_postifx(infix_to_postfix("(4+2)/3+(25*2)")))
+# print(int(3))
+# x=2
+# print(type(x))
+# if type(x) == str:
+    # print("has a value")
+# print(3+2*2)
 # x=[1,2,3,4,2,2]
 # x.remove(2)
 # print(x)
