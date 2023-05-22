@@ -1,0 +1,16 @@
+digraph {
+	A
+	B
+	C
+	D
+	E [color=red style=filled]
+	F
+	A -> B [label=2]
+	A -> C [label=4]
+	B -> D [label=7]
+	B -> C [label=1]
+	C -> E [label=3]
+	D -> F [label=1]
+	E -> F [label=5]
+	E -> D [label=2]
+}
