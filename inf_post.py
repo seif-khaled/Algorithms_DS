@@ -194,9 +194,12 @@ def evaluate_postifx(output_queue):
             queue.append(int(res))
     return queue[0]
     # print(queue,output_queue)
-    
+# print(infix_to_postfix("(-3) * (x^3)"))
+# print(infix_to_postfix("sin(x)-x"))
+# print(infix_to_postfix("1^2^3"))
+print(infix_to_postfix("1^(2^3)"))
 # # evaluate_postifx(infix_to_postfix("((2+3)/20)*6-20"))
-print(evaluate_postifx(infix_to_postfix("3+2*2")))
+# print(evaluate_postifx(infix_to_postfix("3+2*2")))
 # print(evaluate_postifx(infix_to_postfix("(4+2)/3+(25*2)")))
 # print(int(3))
 # x=2

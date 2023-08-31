@@ -78,6 +78,9 @@ class dijkst:
                 if x==1:
                     break
                 
+                
+                
+                
 #test case 1       
 # graph={'A':{'B':2,'C':3},'B':{'C':4},'C':{}}
 # nodes=['A','B','C']
@@ -89,10 +92,20 @@ graph={'A':{'B':2,'C':4},'B':{'D':7,'C':1},'C':{'E':3},'D':{'F':1},'E':{'F':5,'D
 nodes=['A','B','C','D','E','F']
 src='E'
 
+
+
+
+
+
+# def hamada():
+#     return "ahemd",3
+# print(hamada()[2])
+# for i in graph:
+#     print(i,graph[i])
 #test case 3 
 # graph={'A':{'B':5,'D':3,'E':1},'B':{},'C':{'E':11},'D':{},'E':{}}
 # nodes=['A','B','C','D','E']
-# src='A'
+# src='D'
 #################################
 # x=dijkst(nodes,graph,src)
 # x.execute()
@@ -100,35 +113,35 @@ src='E'
 # for i in x.nodes_values:
 #     print(i,x.nodes_values[i])
 ##########################################
-x=dijkst(nodes,graph,src)
-x.execute()
-# print(sele)
-print("\n")
-print("selected\t", "edges")
-# print("distance form the source")
-for i in x.adjancy_mat:
-    print(i,'\t',x.adjancy_mat[i])
+# x=dijkst(nodes,graph,src)
+# x.execute()
+# # print(sele)
+# print("\n")
+# print("selected\t", "edges")
+# # print("distance form the source")
+# for i in x.adjancy_mat:
+#     print(i,'\t',x.adjancy_mat[i])
 
-print("\nvalues from source node ")
-for i in x.nodes_values:
-    print(i,x.nodes_values[i])
+# print("\nvalues from source node ")
+# for i in x.nodes_values:
+#     print(i,x.nodes_values[i])
     
     
     
 #####graph represenation###########
-dot = Digraph()
+# dot = Digraph()
 
-for node in nodes:
-    if node == src:
-        dot.node(node, color='red', style='filled')
-    else:
-        dot.node(node)
+# for node in nodes:
+#     if node == src:
+#         dot.node(node, color='red', style='filled')
+#     else:
+#         dot.node(node)
 
-for node, edges in graph.items():
-    for neighbor, weight in edges.items():
-        dot.edge(node, neighbor, label=str(weight))
+# for node, edges in graph.items():
+#     for neighbor, weight in edges.items():
+#         dot.edge(node, neighbor, label=str(weight))
 
-dot.render('graph', format='pdf', view=True)
+# dot.render('graph', format='pdf', view=True)
 
 
 #######################
