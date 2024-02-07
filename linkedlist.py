@@ -12,9 +12,29 @@ class LinkedList:
     def __init__(self):
         self.n=None
         self.head=None
-        # self.next=None
+    def insert_list_at_end(self,l):
+        if self.head==None:
+            for i in range(len(l)):
+                if self.head!=None:
+                    current=self.head
+                    while(current.next!=None):
+                        current=current.next
+                    current.next=Node(l[i])
+                else:
+                    self.head=Node(l[i])
+        else:
+            current=self.head
+            while(current.next!=None):
+                current=current.next
+            for i in range(len(l)):
+                if i==0:
+                    current.next=Node(l[i])
+                elif i>0:
+                    current=self.head
+                    while(current.next!=None):
+                        current=current.next
+                    current.next=Node(l[i])
     def insert_at_begin(self,data):
-        # self.n=Node(5)
         if self.head==None:
             self.head=Node(data)
         else:
@@ -44,11 +64,14 @@ class LinkedList:
             else:
                 print(" index out of range")
     def insert_at_end(self,data):
-        current=self.head
-        n=Node(data)
-        while(current.next!=None):
-            current=current.next
-        current.next=n
+        if self.head==None:
+            self.head=Node(data)
+        else:
+            current=self.head
+            n=Node(data)
+            while(current.next!=None):
+                current=current.next
+            current.next=n
     def show_item(self,indx):
         i=0
         current=self.head
@@ -85,7 +108,6 @@ class LinkedList:
             
                 
         
-            
         
         
                            
@@ -93,17 +115,20 @@ class LinkedList:
 x=LinkedList()
 x.insert_at_begin(5)
 x.insert_at_begin(3)
-x.insert_at_begin(8)
-x.insert_at_index(7,1)
+# # x.insert_at_begin(8)
+# # x.insert_at_index(7,1)
 x.insert_at_end(18)
+x.insert_list_at_end([24,9,6,266])
 # x.print_head()
 # x.delete_node(1)
-# x.delete_node(0)
-x.delete_node(3)
-x.print_head()
-x.show_item(2)
+x.delete_node(5)
+x.delete_node(5)
+# x.delete_node(3)
+# x.print_head()
+# x.show_item(2)
 x.print_linked_list()
 
             
-    # def insert_at_index(self,data,index)->None:
-    
+
+
+
